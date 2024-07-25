@@ -5,23 +5,29 @@ import java.util.Objects;
 
 public class Peca {
     private int codPeca;
-    private String nomePeca;
-    private String descricao;
-    private LocalDate dataAquisicao;
-    private double valor;
-    private int quantidadeMin;
-    private int quantidadeEstoque;
-    private boolean reservada;
-    private int numVezesUsada;
-    private EnumCondicaoPeca condicaoPeca;
-    private Categoria categoria;
+    private String nomePeca; //boleira de bronze
+    private String descricao; //boleira pequena de material bronze
+    private LocalDate dataAquisicao; //20/07/2024
+    private double valor; //35.70
+    private int quantidadeMin; //2
+    private int quantidadeEstoque; //0
+    private boolean reservada; //false
+    private int numVezesUsada; //0
+    private EnumCondicaoPeca condicaoPeca; //BOA
+    private Categoria categoria = new Categoria();
+    private Estoque localEstoque;
 
-    public Peca(int codPeca, String nomePeca, String descricao, LocalDate dataAquisicao, double valor, EnumCondicaoPeca condicaoPeca){
+    public Peca(){}
+
+    public Peca(int codPeca, String nomePeca, String descricao, LocalDate dataAquisicao, double valor, EnumCondicaoPeca condicaoPeca, String tipo, String cor, String material, String estilo, Estoque localEstoque){
         this.codPeca = codPeca;
         this.nomePeca = nomePeca;
         this.descricao = descricao;
         this.dataAquisicao = LocalDate.now();
         this.valor = valor;
+        this.condicaoPeca = condicaoPeca;
+        this.localEstoque = localEstoque;
+        this.categoria = new Categoria(tipo, cor, material, estilo);
     }
 
     @Override
@@ -38,19 +44,6 @@ public class Peca {
                 ", numVezesUsada=" + numVezesUsada +
                 ", condicaoPeca=" + condicaoPeca +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Peca peca = (Peca) o;
-        return getCodPeca() == peca.getCodPeca();
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(getCodPeca());
     }
 
     //getters
@@ -95,7 +88,6 @@ public class Peca {
     }
 
     //setters
-
     public void setNomePeca(String nomePeca) {
         this.nomePeca = nomePeca;
     }
@@ -127,6 +119,4 @@ public class Peca {
     public void setCondicaoPeca(EnumCondicaoPeca condicaoPeca) {
         this.condicaoPeca = condicaoPeca;
     }
-
-
 }

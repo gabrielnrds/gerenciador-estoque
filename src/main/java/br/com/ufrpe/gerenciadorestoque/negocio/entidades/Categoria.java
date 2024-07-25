@@ -1,10 +1,12 @@
 package br.com.ufrpe.gerenciadorestoque.negocio.entidades;
 
 public class Categoria {
-    private String tipo;
-    private String cor;
-    private String material;
-    private String estilo;
+    private String tipo; //boleira
+    private String cor; //bronzeado
+    private String material; //aluminio
+    private String estilo; //vintage
+
+    public Categoria(){}
 
     public Categoria(String tipo, String cor, String material, String estilo){
         this.tipo = tipo;

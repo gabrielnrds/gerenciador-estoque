@@ -12,6 +12,7 @@ public class Estoque {
         this.nomeEstoque = nomeEstoque;
         this.endereco = endereco;
         this.pecas = new ArrayList<Peca>();
+        this.qtdTotalPecas = 0;
     }
 
     @Override

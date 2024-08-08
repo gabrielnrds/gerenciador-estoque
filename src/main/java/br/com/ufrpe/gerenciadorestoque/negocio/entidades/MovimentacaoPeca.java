@@ -1,16 +1,37 @@
 package br.com.ufrpe.gerenciadorestoque.negocio.entidades;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
+
 
 public class MovimentacaoPeca {
+    private int numMovimentacao;
     private Peca peca;
     private int quantidadePeca;
-    private LocalDate data;
-    private LocalTime hora;
+    private LocalDateTime dataHora;
     private EnumTipoMovimentacao tipoMovimentacao;
+    private Estoque localOrigem;
+    private Estoque localDestino;
+    private static int proximoNum = 0;
 
-    public MovimentacaoPeca(int quantidadePeca){}
+    public MovimentacaoPeca(Peca peca, int quantidadePeca, EnumTipoMovimentacao tipoMovimentacao, Estoque localOrigem, Estoque localDestino){
+        this.numMovimentacao = getProximoNum();
+        this.peca = peca;
+        this.quantidadePeca = quantidadePeca;
+        this.tipoMovimentacao = tipoMovimentacao;
+        this.dataHora = LocalDateTime.now();
+        this.localOrigem = localOrigem;
+        this.localDestino = localDestino;
+    }
+
+    public int getProximoNum(){
+        int num = proximoNum;
+        proximoNum++;
+        return num;
+    }
+
+    public int getNumMovimentacao(){
+        return this.numMovimentacao;
+    }
 
     public int getQuantidadePeca() {
         return quantidadePeca;
@@ -20,27 +41,27 @@ public class MovimentacaoPeca {
         this.quantidadePeca = quantidadePeca;
     }
 
-    public LocalDate getData() {
-        return data;
-    }
-
-    public void setData(LocalDate data) {
-        this.data = data;
-    }
-
-    public LocalTime getHora() {
-        return hora;
-    }
-
-    public void setHora(LocalTime hora) {
-        this.hora = hora;
-    }
-
     public EnumTipoMovimentacao getTipoMovimentacao() {
         return tipoMovimentacao;
     }
 
     public void setTipoMovimentacao(EnumTipoMovimentacao tipoMovimentacao) {
         this.tipoMovimentacao = tipoMovimentacao;
+    }
+
+    public Peca getPeca() {
+        return peca;
+    }
+
+    public LocalDateTime getDataHora() {
+        return dataHora;
+    }
+
+    public Estoque getLocalOrigem() {
+        return localOrigem;
+    }
+
+    public Estoque getLocalDestino() {
+        return localDestino;
     }
 }

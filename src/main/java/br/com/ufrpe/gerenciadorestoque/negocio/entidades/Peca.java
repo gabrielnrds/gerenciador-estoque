@@ -1,28 +1,29 @@
 package br.com.ufrpe.gerenciadorestoque.negocio.entidades;
 
-import java.time.LocalDate;
-import java.util.Objects;
 import java.util.ArrayList;
 
 public class Peca {
-    private int idPeca;
+    private String idPeca;
     private String nomePeca;
     private String descricao;
     private double valor;
     private int quantidadeMin;
     private int quantidadeEstoque;
     private int numVezesUsada;
-    private Categoria categoria = new Categoria();
-    private ArrayList<ItemPeca> itensPeca;
+    private ArrayList<ItemPeca> itensPeca = new ArrayList<>();
+    private ArrayList<Tag> tags = new ArrayList<>();
 
-    public Peca(){}
+    public Peca(String idPeca, String nomePeca){
+        this.idPeca = idPeca;
+        this.nomePeca = nomePeca;
+    }
 
-    public Peca(int idPeca, String nomePeca, String descricao, LocalDate dataAquisicao, double valor, EnumCondicaoPeca condicaoPeca, String tipo, String cor, String material, String estilo, Estoque localEstoque){
+    public Peca(String idPeca, String nomePeca, String descricao, double valor, int quantidadeMin){
         this.idPeca = idPeca;
         this.nomePeca = nomePeca;
         this.descricao = descricao;
         this.valor = valor;
-        this.categoria = new Categoria(tipo, cor, material, estilo);
+        this.quantidadeMin = quantidadeMin;
     }
 
     @Override
@@ -39,7 +40,7 @@ public class Peca {
     }
 
     //getters
-    public int getIdPeca() {
+    public String getIdPeca() {
         return idPeca;
     }
 
@@ -87,5 +88,4 @@ public class Peca {
     public void setQuantidadeEstoque(int quantidadeEstoque) {
         this.quantidadeEstoque = quantidadeEstoque;
     }
-
 }

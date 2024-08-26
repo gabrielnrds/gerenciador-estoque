@@ -2,25 +2,25 @@ package br.com.ufrpe.gerenciadorestoque.negocio.entidades;
 
 import java.time.LocalDateTime;
 
-
 public class MovimentacaoPeca {
     private int numMovimentacao;
     private Peca peca;
-    private int quantidadePeca;
+    private int quantidade;
+    private String observacoes;
     private LocalDateTime dataHora;
     private EnumTipoMovimentacao tipoMovimentacao;
-    private Estoque localOrigem;
-    private Estoque localDestino;
+    private String localOrigem;
+    private String localDestino;
+    private Evento evento;
     private static int proximoNum = 0;
 
-    public MovimentacaoPeca(Peca peca, int quantidadePeca, EnumTipoMovimentacao tipoMovimentacao, Estoque localOrigem, Estoque localDestino){
+    public MovimentacaoPeca(Peca peca, int quantidade, String observacoes, EnumTipoMovimentacao tipoMovimentacao){
         this.numMovimentacao = getProximoNum();
         this.peca = peca;
-        this.quantidadePeca = quantidadePeca;
+        this.quantidade = quantidade;
+        this.observacoes = observacoes;
         this.tipoMovimentacao = tipoMovimentacao;
         this.dataHora = LocalDateTime.now();
-        this.localOrigem = localOrigem;
-        this.localDestino = localDestino;
     }
 
     public int getProximoNum(){
@@ -33,12 +33,12 @@ public class MovimentacaoPeca {
         return this.numMovimentacao;
     }
 
-    public int getQuantidadePeca() {
-        return quantidadePeca;
+    public int getQuantidade() {
+        return quantidade;
     }
 
-    public void setQuantidadePeca(int quantidadePeca) {
-        this.quantidadePeca = quantidadePeca;
+    public void setQuantidade(int quantidadePeca) {
+        this.quantidade = quantidadePeca;
     }
 
     public EnumTipoMovimentacao getTipoMovimentacao() {
@@ -57,11 +57,11 @@ public class MovimentacaoPeca {
         return dataHora;
     }
 
-    public Estoque getLocalOrigem() {
+    public String getLocalOrigem() {
         return localOrigem;
     }
 
-    public Estoque getLocalDestino() {
+    public String getLocalDestino() {
         return localDestino;
     }
 }

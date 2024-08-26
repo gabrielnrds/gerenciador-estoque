@@ -4,16 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ce13a29f-cf71-4ec2-9d6c-fef4ecd40323" name="Changes" comment="RepositorioPecas adicionado">
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/dados/RepositorioMovimentoPecas.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/controle/CadastroPecas.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/controle/TesteMain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/entidades/Tag.java" afterDir="false" />
+    <list default="true" id="ce13a29f-cf71-4ec2-9d6c-fef4ecd40323" name="Changes" comment="RepositorioMovimentoPecas adicionado, Classe Tag adicionada, Classe categoria removida">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/dados/RepositorioEventos.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/dados/RepositorioTags.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/dados/RepositorioPecas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/dados/RepositorioPecas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/entidades/Categoria.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/entidades/EnumCondicaoPeca.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/entidades/Estoque.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/entidades/Evento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/entidades/Evento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/entidades/ItemEvento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/entidades/ItemEvento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/entidades/ItemPeca.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/entidades/MovimentacaoPeca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/entidades/MovimentacaoPeca.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/entidades/Peca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/entidades/Peca.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/entidades/Tag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/entidades/Tag.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,14 +104,23 @@
       <option name="project" value="LOCAL" />
       <updated>1722524112223</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="RepositorioMovimentoPecas adicionado, Classe Tag adicionada, Classe categoria removida">
+      <option name="closed" value="true" />
+      <created>1723128863964</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1723128863964</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Commit inicial" />
     <MESSAGE value="classe Estoque adicionada" />
     <MESSAGE value="RepositorioPecas adicionado" />
-    <option name="LAST_COMMIT_MESSAGE" value="RepositorioPecas adicionado" />
+    <MESSAGE value="RepositorioMovimentoPecas adicionado, Classe Tag adicionada, Classe categoria removida" />
+    <option name="LAST_COMMIT_MESSAGE" value="RepositorioMovimentoPecas adicionado, Classe Tag adicionada, Classe categoria removida" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

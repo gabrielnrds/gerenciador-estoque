@@ -28,7 +28,7 @@ public class RepositorioPecas {
         proxima++;
     }
 
-    public void removerPeca(String id){
+    public void remover(String id){
         int i = procurarIndice(id);
         if(i != this.proxima){
             this.pecas[i] = this.pecas[this.proxima - 1];
@@ -40,7 +40,7 @@ public class RepositorioPecas {
     public ArrayList<Peca> buscarPecasPeloNome(String nome){
         ArrayList<Peca> resultado = new ArrayList<>(0);
         for(Peca peca : this.pecas){
-            if(peca != null && peca.getNomePeca().contains(nome)){
+            if(peca != null && peca.getNome().contains(nome)){
                 resultado.add(peca);
             }
         }
@@ -50,7 +50,7 @@ public class RepositorioPecas {
     public int procurarIndice(String id){
         int indice;
         for(indice = 0; indice < this.proxima; indice++){
-            if(this.pecas[indice].getIdPeca().equals(id)){
+            if(this.pecas[indice].getId().equals(id)){
                 break;
             }
         }

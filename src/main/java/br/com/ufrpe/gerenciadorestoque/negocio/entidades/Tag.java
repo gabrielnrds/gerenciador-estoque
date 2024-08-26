@@ -2,7 +2,6 @@ package br.com.ufrpe.gerenciadorestoque.negocio.entidades;
 
 public class Tag {
     private String nome;
-    //private String corTag;
 
     public Tag(String nome){
         this.nome = nome;

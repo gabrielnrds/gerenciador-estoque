@@ -1,91 +1,93 @@
 package br.com.ufrpe.gerenciadorestoque.negocio.entidades;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class Peca {
-    private String idPeca;
-    private String nomePeca;
+    private String id;
+    private String nome;
     private String descricao;
-    private double valor;
+    private BufferedImage foto;
     private int quantidadeMin;
-    private int quantidadeEstoque;
+    private int quantidade;
     private int numVezesUsada;
-    private ArrayList<ItemPeca> itensPeca = new ArrayList<>();
+    private double valor;
+    private String localEndereco;
     private ArrayList<Tag> tags = new ArrayList<>();
 
-    public Peca(String idPeca, String nomePeca){
-        this.idPeca = idPeca;
-        this.nomePeca = nomePeca;
+    public Peca(String id, String nomePeca) {
+        this.id = id;
+        this.nome = nomePeca;
     }
 
-    public Peca(String idPeca, String nomePeca, String descricao, double valor, int quantidadeMin){
-        this.idPeca = idPeca;
-        this.nomePeca = nomePeca;
+    public Peca(String id, String nomePeca, String descricao, int quantidadeMin) {
+        this.id = id;
+        this.nome = nomePeca;
         this.descricao = descricao;
-        this.valor = valor;
         this.quantidadeMin = quantidadeMin;
     }
 
-    @Override
-    public String toString() {
-        return "Peca{" +
-                "codPeca=" + idPeca +
-                ", nomePeca='" + nomePeca + '\'' +
-                ", descricao='" + descricao + '\'' +
-                ", valor=" + valor +
-                ", quantidadeMin=" + quantidadeMin +
-                ", quantidadeEstoque=" + quantidadeEstoque +
-                ", numVezesUsada=" + numVezesUsada +
-                '}';
+    public String getId() {
+        return id;
     }
 
-    //getters
-    public String getIdPeca() {
-        return idPeca;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getNomePeca(){
-        return nomePeca;
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getDescricao() {
         return descricao;
     }
 
-    public double getValor() {
-        return valor;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public int getQuantidadeMin() {
         return quantidadeMin;
     }
 
-    public int getQuantidadeEstoque() {
-        return quantidadeEstoque;
+    public void setQuantidadeMin(int quantidadeMin) {
+        this.quantidadeMin = quantidadeMin;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
     }
 
     public int getNumVezesUsada() {
         return numVezesUsada;
     }
 
-    //setters
-    public void setNomePeca(String nomePeca) {
-        this.nomePeca = nomePeca;
+    public void setNumVezesUsada(int numVezesUsada) {
+        this.numVezesUsada = numVezesUsada;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public double getValor() {
+        return valor;
     }
 
     public void setValor(double valor) {
         this.valor = valor;
     }
 
-    public void setQuantidadeMin(int quantidadeMin) {
-        this.quantidadeMin = quantidadeMin;
+    public String getLocalEndereco() {
+        return localEndereco;
     }
 
-    public void setQuantidadeEstoque(int quantidadeEstoque) {
-        this.quantidadeEstoque = quantidadeEstoque;
+    public void setLocalEndereco(String localEndereco) {
+        this.localEndereco = localEndereco;
     }
 }

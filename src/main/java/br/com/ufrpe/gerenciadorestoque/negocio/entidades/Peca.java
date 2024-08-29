@@ -1,30 +1,47 @@
 package br.com.ufrpe.gerenciadorestoque.negocio.entidades;
 
 import java.awt.image.BufferedImage;
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Peca {
+public class Peca implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 7060279674159681283L;
+
     private String id;
     private String nome;
     private String descricao;
-    private BufferedImage foto;
+    private double valor;
+    private BufferedImage fotoPeca;
     private int quantidadeMin;
     private int quantidade;
     private int numVezesUsada;
-    private double valor;
     private String localEndereco;
-    private ArrayList<Tag> tags = new ArrayList<>();
+    private ArrayList<Tag> tags;
 
-    public Peca(String id, String nomePeca) {
+    public Peca(String id, String nome) {
         this.id = id;
-        this.nome = nomePeca;
+        this.nome = nome;
     }
 
-    public Peca(String id, String nomePeca, String descricao, int quantidadeMin) {
+    public Peca(String id, String nome, String descricao, double valor, BufferedImage fotoPeca, int quantidadeMin, int quantidade, String localEndereco) {
         this.id = id;
-        this.nome = nomePeca;
+        this.nome = nome;
         this.descricao = descricao;
+        this.valor = valor;
+        this.fotoPeca = fotoPeca;
         this.quantidadeMin = quantidadeMin;
+        this.quantidade = quantidade;
+        this.localEndereco = localEndereco;
+        this.tags = new ArrayList<>();
+    }
+
+    public String toString() {
+        String string = "ID: %s | %s%n";
+        String resultado = String.format(string, this.id, this.nome);
+        return resultado;
     }
 
     public String getId() {

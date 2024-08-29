@@ -2,9 +2,13 @@ package br.com.ufrpe.gerenciadorestoque.dados;
 
 import br.com.ufrpe.gerenciadorestoque.negocio.entidades.Peca;
 
+import java.io.*;
 import java.util.ArrayList;
 
-public class RepositorioPecas {
+public class RepositorioPecas implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = -3267455839474040297L;
     private Peca[] pecas;
     private int proxima;
 
@@ -18,7 +22,7 @@ public class RepositorioPecas {
     //singleton
     public static RepositorioPecas getInstance(){
         if(instance == null){
-            //Ler instancia do repositorio no arquivo.
+            instance = carregarArquivo();
         }
         return instance;
     }
@@ -63,5 +67,60 @@ public class RepositorioPecas {
             existe = true;
         }
         return existe;
+    }
+
+    public String listarPecas(){
+        String resultado = "";
+        for(Peca peca : this.pecas){
+            if(peca != null){
+                resultado += peca.toString();
+            } else { break; }
+        }
+        return resultado;
+    }
+
+    private static RepositorioPecas carregarArquivo(){
+        RepositorioPecas instanciaLocal = null;
+        File in = new File("pecas.dat");
+        FileInputStream fis = null;
+        ObjectInputStream ois = null;
+        try{
+            fis = new FileInputStream(in);
+            ois = new ObjectInputStream(fis);
+            Object obj = ois.readObject();
+            instanciaLocal = (RepositorioPecas) obj;
+
+        } catch (Exception e){
+            instanciaLocal = new RepositorioPecas();
+        } finally {
+            if(ois != null){
+                try{
+                    ois.close();
+                } catch (IOException e){}
+            }
+        }
+        return instanciaLocal;
+    }
+
+    public void salvarArquivo(){
+        if(instance != null){
+            File out = new File("pecas.dat");
+            FileOutputStream fos = null;
+            ObjectOutputStream oos = null;
+
+            try {
+                fos = new FileOutputStream(out);
+                oos = new ObjectOutputStream(fos);
+                oos.writeObject(instance);
+            } catch (Exception e){
+                e.printStackTrace();
+            } finally {
+                if(oos != null){
+                    try {
+                        oos.close();
+                    } catch (IOException e){}
+                }
+            }
+        }
     }
 }

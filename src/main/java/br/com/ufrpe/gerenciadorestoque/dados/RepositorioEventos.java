@@ -1,8 +1,12 @@
 package br.com.ufrpe.gerenciadorestoque.dados;
 
 import br.com.ufrpe.gerenciadorestoque.negocio.entidades.Evento;
+import java.io.*;
 
-public class RepositorioEventos {
+public class RepositorioEventos implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 6770477833356L;
+
     private Evento[] eventos;
     private int proxima;
 
@@ -15,9 +19,54 @@ public class RepositorioEventos {
 
     public static RepositorioEventos getInstance(){
         if(instance == null){
-            //ler instancia do repositorio no arquino
+            instance = carregarArquivo();
         }
         return instance;
+    }
+
+    private static RepositorioEventos carregarArquivo(){
+        RepositorioEventos instanciaLocal = null;
+        File in = new File("eventos.dat");
+        FileInputStream fis = null;
+        ObjectInputStream ois = null;
+        try{
+            fis = new FileInputStream(in);
+            ois = new ObjectInputStream(fis);
+            Object obj = ois.readObject();
+            instanciaLocal = (RepositorioEventos) obj;
+
+        } catch (Exception e){
+            instanciaLocal = new RepositorioEventos();
+        } finally {
+            if(ois != null){
+                try{
+                    ois.close();
+                } catch (IOException e){}
+            }
+        }
+        return instanciaLocal;
+    }
+
+    public void salvarArquivo(){
+        if(instance != null){
+            File out = new File("eventos.dat");
+            FileOutputStream fos = null;
+            ObjectOutputStream oos = null;
+
+            try {
+                fos = new FileOutputStream(out);
+                oos = new ObjectOutputStream(fos);
+                oos.writeObject(instance);
+            } catch (Exception e){
+                e.printStackTrace();
+            } finally {
+                if(oos != null){
+                    try {
+                        oos.close();
+                    } catch (IOException e){}
+                }
+            }
+        }
     }
 
     public void cadastrar(Evento evento){

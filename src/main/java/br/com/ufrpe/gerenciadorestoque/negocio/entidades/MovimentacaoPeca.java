@@ -1,8 +1,13 @@
 package br.com.ufrpe.gerenciadorestoque.negocio.entidades;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class MovimentacaoPeca {
+public class MovimentacaoPeca implements Serializable {
+    @Serial
+    private static final long serialVersionUID = -2343448666900L;
+
     private int numMovimentacao;
     private Peca peca;
     private int quantidade;

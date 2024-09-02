@@ -1,10 +1,15 @@
 package br.com.ufrpe.gerenciadorestoque.negocio.entidades;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.time.LocalDate;
 
-public class Evento {
+public class Evento implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 4212167967755L;
+
     private String nomeEvento;
     private String descricao;
     private String cliente;

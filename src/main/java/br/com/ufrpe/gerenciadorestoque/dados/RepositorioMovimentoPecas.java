@@ -1,11 +1,13 @@
 package br.com.ufrpe.gerenciadorestoque.dados;
 
 import br.com.ufrpe.gerenciadorestoque.negocio.entidades.MovimentacaoPeca;
-import br.com.ufrpe.gerenciadorestoque.negocio.entidades.Peca;
 
-import java.util.ArrayList;
+import java.io.*;
 
-public class RepositorioMovimentoPecas {
+public class RepositorioMovimentoPecas implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 56221355430000L;
+
     private MovimentacaoPeca[] movimentos;
     private int proxima;
 
@@ -19,9 +21,54 @@ public class RepositorioMovimentoPecas {
     //singleton
     public static RepositorioMovimentoPecas getInstance(){
         if(instance == null){
-            //Ler instancia do repositorio no arquivo.
+            instance = carregarArquivo();
         }
         return instance;
+    }
+
+    private static RepositorioMovimentoPecas carregarArquivo(){
+        RepositorioMovimentoPecas instanciaLocal = null;
+        File in = new File("movimentos.dat");
+        FileInputStream fis = null;
+        ObjectInputStream ois = null;
+        try{
+            fis = new FileInputStream(in);
+            ois = new ObjectInputStream(fis);
+            Object obj = ois.readObject();
+            instanciaLocal = (RepositorioMovimentoPecas) obj;
+
+        } catch (Exception e){
+            instanciaLocal = new RepositorioMovimentoPecas();
+        } finally {
+            if(ois != null){
+                try{
+                    ois.close();
+                } catch (IOException e){}
+            }
+        }
+        return instanciaLocal;
+    }
+
+    public void salvarArquivo(){
+        if(instance != null){
+            File out = new File("movimentos.dat");
+            FileOutputStream fos = null;
+            ObjectOutputStream oos = null;
+
+            try {
+                fos = new FileOutputStream(out);
+                oos = new ObjectOutputStream(fos);
+                oos.writeObject(instance);
+            } catch (Exception e){
+                e.printStackTrace();
+            } finally {
+                if(oos != null){
+                    try {
+                        oos.close();
+                    } catch (IOException e){}
+                }
+            }
+        }
     }
 
     public void cadastrar(MovimentacaoPeca movimentacao){

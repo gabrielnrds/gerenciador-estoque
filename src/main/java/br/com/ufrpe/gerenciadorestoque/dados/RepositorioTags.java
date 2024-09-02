@@ -1,11 +1,12 @@
 package br.com.ufrpe.gerenciadorestoque.dados;
 
-import br.com.ufrpe.gerenciadorestoque.negocio.entidades.Peca;
 import br.com.ufrpe.gerenciadorestoque.negocio.entidades.Tag;
+import java.io.*;
 
-import java.util.ArrayList;
+public class RepositorioTags implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 26854313216006L;
 
-public class RepositorioTags {
     private Tag[] tags;
     private int proxima = 0;
 
@@ -19,9 +20,54 @@ public class RepositorioTags {
     //singleton
     public static RepositorioTags getInstance(){
         if(instance == null){
-            //Ler instancia do repositorio no arquivo.
+            instance = carregarArquivo();
         }
         return instance;
+    }
+
+    private static RepositorioTags carregarArquivo(){
+        RepositorioTags instanciaLocal = null;
+        File in = new File("tags.dat");
+        FileInputStream fis = null;
+        ObjectInputStream ois = null;
+        try{
+            fis = new FileInputStream(in);
+            ois = new ObjectInputStream(fis);
+            Object obj = ois.readObject();
+            instanciaLocal = (RepositorioTags) obj;
+
+        } catch (Exception e){
+            instanciaLocal = new RepositorioTags();
+        } finally {
+            if(ois != null){
+                try{
+                    ois.close();
+                } catch (IOException e){}
+            }
+        }
+        return instanciaLocal;
+    }
+
+    public void salvarArquivo(){
+        if(instance != null){
+            File out = new File("tags.dat");
+            FileOutputStream fos = null;
+            ObjectOutputStream oos = null;
+
+            try {
+                fos = new FileOutputStream(out);
+                oos = new ObjectOutputStream(fos);
+                oos.writeObject(instance);
+            } catch (Exception e){
+                e.printStackTrace();
+            } finally {
+                if(oos != null){
+                    try {
+                        oos.close();
+                    } catch (IOException e){}
+                }
+            }
+        }
     }
 
     public void cadastrar(Tag tag){

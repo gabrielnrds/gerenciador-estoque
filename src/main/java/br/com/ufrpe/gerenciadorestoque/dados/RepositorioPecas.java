@@ -6,9 +6,9 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class RepositorioPecas implements Serializable {
-
     @Serial
     private static final long serialVersionUID = -3267455839474040297L;
+
     private Peca[] pecas;
     private int proxima;
 

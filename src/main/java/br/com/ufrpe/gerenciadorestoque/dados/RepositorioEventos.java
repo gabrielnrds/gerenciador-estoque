@@ -12,7 +12,7 @@ public class RepositorioEventos implements Serializable {
 
     private static RepositorioEventos instance;
 
-    public RepositorioEventos(){
+    private RepositorioEventos(){
         this.eventos = new Evento[200];
         this.proxima = 0;
     }

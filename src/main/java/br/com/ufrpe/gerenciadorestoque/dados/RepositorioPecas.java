@@ -1,5 +1,6 @@
 package br.com.ufrpe.gerenciadorestoque.dados;
 
+import br.com.ufrpe.gerenciadorestoque.excecoes.PecaNaoExisteException;
 import br.com.ufrpe.gerenciadorestoque.negocio.entidades.Peca;
 
 import java.io.*;
@@ -14,7 +15,7 @@ public class RepositorioPecas implements Serializable {
 
     private static RepositorioPecas instance;
 
-    public RepositorioPecas(){
+    private RepositorioPecas(){
         this.pecas = new Peca[200];
         this.proxima = 0;
     }
@@ -25,58 +26,6 @@ public class RepositorioPecas implements Serializable {
             instance = carregarArquivo();
         }
         return instance;
-    }
-
-    public void cadastrar(Peca peca){ //throws PecaJaExisteException
-        this.pecas[proxima] = peca;
-        proxima++;
-    }
-
-    public void remover(String id){
-        int i = procurarIndice(id);
-        if(i != this.proxima){
-            this.pecas[i] = this.pecas[this.proxima - 1];
-            this.pecas[this.proxima - 1] = null;
-            proxima--;
-        }
-    }
-
-    public ArrayList<Peca> buscarPecasPeloNome(String nome){
-        ArrayList<Peca> resultado = new ArrayList<>(0);
-        for(Peca peca : this.pecas){
-            if(peca != null && peca.getNome().contains(nome)){
-                resultado.add(peca);
-            }
-        }
-        return resultado;
-    }
-
-    public int procurarIndice(String id){
-        int indice;
-        for(indice = 0; indice < this.proxima; indice++){
-            if(this.pecas[indice].getId().equals(id)){
-                break;
-            }
-        }
-        return indice;
-    }
-
-    public boolean pecaExiste (String id){
-        boolean existe = false;
-        if(procurarIndice(id) != this.proxima){
-            existe = true;
-        }
-        return existe;
-    }
-
-    public String listarPecas(){
-        String resultado = "";
-        for(Peca peca : this.pecas){
-            if(peca != null){
-                resultado += peca.toString();
-            } else { break; }
-        }
-        return resultado;
     }
 
     private static RepositorioPecas carregarArquivo(){
@@ -122,5 +71,62 @@ public class RepositorioPecas implements Serializable {
                 }
             }
         }
+    }
+
+    public void cadastrar(Peca peca){ //throws PecaJaExisteException
+        this.pecas[proxima] = peca;
+        proxima++;
+    }
+
+    public void remover(String id) throws PecaNaoExisteException {
+        int i = procurarIndice(id);
+        if(i != this.proxima){
+            this.pecas[i] = this.pecas[this.proxima - 1];
+            this.pecas[this.proxima - 1] = null;
+            proxima--;
+        } else {
+            throw new PecaNaoExisteException(id);
+        }
+    }
+
+    public ArrayList<Peca> buscarPecasPeloNome(String nome){
+        ArrayList<Peca> resultado = new ArrayList<>(0);
+        for(Peca peca : this.pecas){
+            if(peca != null && peca.getNome().contains(nome)){
+                resultado.add(peca);
+            }
+        }
+        return resultado;
+    }
+
+    public int procurarIndice(String id){
+        int indice;
+        for(indice = 0; indice < this.proxima; indice++){
+            if(this.pecas[indice].getId().equals(id)){
+                break;
+            }
+        }
+        return indice;
+    }
+
+    public boolean pecaExiste (String id){
+        if(id == null){
+            return false;
+        }
+        boolean existe = false;
+        if(procurarIndice(id) != this.proxima){
+            existe = true;
+        }
+        return existe;
+    }
+
+    public String listarPecas(){
+        String resultado = "";
+        for(Peca peca : this.pecas){
+            if(peca != null){
+                resultado += peca.toString();
+            } else { break; }
+        }
+        return resultado;
     }
 }

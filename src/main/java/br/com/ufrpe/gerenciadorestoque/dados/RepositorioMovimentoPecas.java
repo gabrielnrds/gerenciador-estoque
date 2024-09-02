@@ -13,7 +13,7 @@ public class RepositorioMovimentoPecas implements Serializable {
 
     private static RepositorioMovimentoPecas instance;
 
-    public RepositorioMovimentoPecas(){
+    private RepositorioMovimentoPecas(){
         this.movimentos = new MovimentacaoPeca[200];
         this.proxima = 0;
     }

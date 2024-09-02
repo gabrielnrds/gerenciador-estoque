@@ -8,11 +8,11 @@ public class RepositorioTags implements Serializable {
     private static final long serialVersionUID = 26854313216006L;
 
     private Tag[] tags;
-    private int proxima = 0;
+    private int proxima;
 
     private static RepositorioTags instance;
 
-    public RepositorioTags(){
+    private RepositorioTags(){
         this.tags = new Tag[200];
         this.proxima = 0;
     }

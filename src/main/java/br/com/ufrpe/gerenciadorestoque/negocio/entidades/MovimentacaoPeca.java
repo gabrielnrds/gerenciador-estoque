@@ -11,7 +11,6 @@ public class MovimentacaoPeca implements Serializable {
     private int numMovimentacao;
     private Peca peca;
     private int quantidade;
-    private String observacoes;
     private LocalDateTime dataHora;
     private EnumTipoMovimentacao tipoMovimentacao;
     private String localOrigem;
@@ -23,12 +22,11 @@ public class MovimentacaoPeca implements Serializable {
         this.numMovimentacao = getProximoNum();
         this.peca = peca;
         this.quantidade = quantidade;
-        this.observacoes = observacoes;
         this.tipoMovimentacao = tipoMovimentacao;
         this.dataHora = LocalDateTime.now();
     }
 
-    public int getProximoNum(){
+    public static int getProximoNum(){
         int num = proximoNum;
         proximoNum++;
         return num;

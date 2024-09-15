@@ -83,10 +83,21 @@ public class RepositorioEventos implements Serializable {
         }
     }
 
+    public Evento procurarEvento(String nome){
+        Evento evento = null;
+        if(nome != null) {
+            int i = procurarIndice(nome);
+            if (i != proxima) {
+                evento = this.eventos[i];
+            }
+        }
+        return evento;
+    }
+
     public int procurarIndice(String nome){
         int indice;
         for(indice = 0; indice < this.proxima; indice++){
-            if(this.eventos[indice].getNomeEvento().equals(nome)){
+            if(this.eventos[indice].getNome().equals(nome)){
                 break;
             }
         }

@@ -1,6 +1,7 @@
 package br.com.ufrpe.gerenciadorestoque.dados;
 
 import br.com.ufrpe.gerenciadorestoque.excecoes.PecaNaoExisteException;
+import br.com.ufrpe.gerenciadorestoque.negocio.entidades.Evento;
 import br.com.ufrpe.gerenciadorestoque.negocio.entidades.Peca;
 
 import java.io.*;
@@ -73,7 +74,7 @@ public class RepositorioPecas implements Serializable {
         }
     }
 
-    public void cadastrar(Peca peca){ //throws PecaJaExisteException
+    public void cadastrar(Peca peca){
         this.pecas[proxima] = peca;
         proxima++;
     }
@@ -87,6 +88,17 @@ public class RepositorioPecas implements Serializable {
         } else {
             throw new PecaNaoExisteException(id);
         }
+    }
+
+    public Peca procurarPeca(String id){
+        Peca peca = null;
+        if(id != null) {
+            int i = procurarIndice(id);
+            if (i != proxima) {
+                peca = this.pecas[i];
+            }
+        }
+        return peca;
     }
 
     public ArrayList<Peca> buscarPecasPeloNome(String nome){

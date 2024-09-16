@@ -4,19 +4,14 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="600.0" style="-fx-background-color: 5f55;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ufrpe.gerenciadorestoque.CadastroPecaController">
    <children>
-      <ImageView fitHeight="236.0" fitWidth="186.0" layoutX="24.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@gatito.png" />
-         </image>
-      </ImageView>
+      <ImageView fx:id="imgPeca" fitHeight="179.0" fitWidth="186.0" layoutX="24.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" />
       <Label layoutX="22.0" layoutY="15.0" prefHeight="32.0" prefWidth="186.0" text="Cadastro de Peça">
          <font>
             <Font size="23.0" />
@@ -25,7 +20,7 @@
       <Line endX="449.0" layoutX="123.0" layoutY="49.0" startX="-100.0" />
       <AnchorPane layoutX="239.0" layoutY="58.0" prefHeight="242.0" prefWidth="344.0">
          <children>
-            <TextField layoutX="4.0" layoutY="24.0" prefHeight="25.0" prefWidth="73.0">
+            <TextField fx:id="txtFdId" layoutX="4.0" layoutY="24.0" prefHeight="25.0" prefWidth="73.0">
                <font>
                   <Font size="14.0" />
                </font></TextField>
@@ -34,7 +29,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField layoutX="95.0" layoutY="24.0" prefHeight="25.0" prefWidth="104.0">
+            <TextField fx:id="txtFdNome" layoutX="95.0" layoutY="24.0" prefHeight="25.0" prefWidth="104.0">
                <font>
                   <Font size="14.0" />
                </font></TextField>
@@ -48,11 +43,11 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextArea layoutX="5.0" layoutY="82.0" prefHeight="55.0" prefWidth="291.0">
+            <TextArea fx:id="txtAreaDescricao" layoutX="5.0" layoutY="82.0" prefHeight="55.0" prefWidth="291.0">
                <font>
                   <Font size="14.0" />
                </font></TextArea>
-            <TextField layoutX="216.0" layoutY="24.0" prefHeight="25.0" prefWidth="79.0" promptText="R$">
+            <TextField fx:id="txtFdValor" layoutX="216.0" layoutY="24.0" prefHeight="25.0" prefWidth="79.0" promptText="R$">
                <font>
                   <Font size="14.0" />
                </font></TextField>
@@ -61,7 +56,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField layoutX="6.0" layoutY="170.0" prefHeight="25.0" prefWidth="87.0">
+            <TextField fx:id="txtFdQuantidade" layoutX="6.0" layoutY="170.0" prefHeight="25.0" prefWidth="87.0">
                <font>
                   <Font size="14.0" />
                </font></TextField>
@@ -70,7 +65,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField layoutX="114.0" layoutY="170.0" prefHeight="25.0" prefWidth="58.0" promptText="0">
+            <TextField fx:id="txtFdQtdMin" layoutX="114.0" layoutY="170.0" prefHeight="25.0" prefWidth="58.0" promptText="0">
                <font>
                   <Font size="14.0" />
                </font></TextField>
@@ -84,33 +79,38 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField layoutX="6.0" layoutY="226.0" prefHeight="30.0" prefWidth="201.0">
+            <TextField fx:id="txtFdLocalidade" layoutX="6.0" layoutY="226.0" prefHeight="30.0" prefWidth="201.0">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
          </children>
       </AnchorPane>
-      <Button layoutX="51.0" layoutY="262.0" mnemonicParsing="false" text="Selecionar imagem">
+      <Button fx:id="btnSelecionarImagem" layoutX="51.0" layoutY="262.0" mnemonicParsing="false" text="Selecionar imagem">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
       <Line endX="449.0" layoutX="123.0" layoutY="392.0" startX="-100.0" />
-      <Button layoutX="319.0" layoutY="402.0" mnemonicParsing="false" text="Salvar">
+      <Button fx:id="btnSalvar" layoutX="318.0" layoutY="402.0" mnemonicParsing="false" onAction="#salvarPeca" prefHeight="30.0" prefWidth="73.0" text="Salvar">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="227.0" layoutY="402.0" mnemonicParsing="false" text="Cancelar">
+      <Button fx:id="btnVoltar" layoutX="210.0" layoutY="402.0" mnemonicParsing="false" onAction="#voltar" prefHeight="30.0" prefWidth="73.0" text="Voltar">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="456.0" layoutY="354.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="117.0" text="Adicionar Tags">
+      <Button fx:id="btnAdicionarTags" layoutX="456.0" layoutY="354.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="117.0" text="Adicionar Tags">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
+      <Label fx:id="lblAviso" layoutX="208.0" layoutY="367.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

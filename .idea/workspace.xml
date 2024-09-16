@@ -4,25 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ce13a29f-cf71-4ec2-9d6c-fef4ecd40323" name="Changes" comment="método cadastrar, remover e existe da classe CadastroPecas">
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/CadastroEventoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/ScreenManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/excecoes/EventoJaExisteException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/excecoes/EventoNaoExisteException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/excecoes/QtdSuperiorQueADisponivelException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/controle/CadastroEventos.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/br/com/ufrpe/gerenciadorestoque/telaCadastoEvento.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/br/com/ufrpe/gerenciadorestoque/telaEventos.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/br/com/ufrpe/gerenciadorestoque/telaNovaPeca.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/br/com/ufrpe/gerenciadorestoque/telaPecas.fxml" afterDir="false" />
+    <list default="true" id="ce13a29f-cf71-4ec2-9d6c-fef4ecd40323" name="Changes" comment="Ajustes">
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/CadastroPecaController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/EventosController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/PecasController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/controle/CadastroMovimentacaoPecas.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/controle/Teste.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/entidades/EnumTipoMovimento.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/Aplicativo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/CadastroEventoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/CadastroEventoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/ScreenManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/ScreenManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/dados/RepositorioEventos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/dados/RepositorioEventos.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/dados/RepositorioPecas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/dados/RepositorioPecas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/excecoes/PecaJaExisteException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/excecoes/PecaJaExisteException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/controle/CadastroEventos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/controle/CadastroEventos.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/controle/CadastroPecas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/controle/CadastroPecas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/controle/Fachada.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/controle/Fachada.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/controle/TesteMain.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/entidades/EnumTipoMovimentacao.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/entidades/Evento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/entidades/Evento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/entidades/ItemEvento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/entidades/ItemEvento.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/entidades/MovimentacaoPeca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/entidades/MovimentacaoPeca.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/entidades/Peca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ufrpe/gerenciadorestoque/negocio/entidades/Peca.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/br/com/ufrpe/gerenciadorestoque/telaCadastoEvento.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/br/com/ufrpe/gerenciadorestoque/telaCadastroEvento.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/br/com/ufrpe/gerenciadorestoque/telaEventos.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/br/com/ufrpe/gerenciadorestoque/telaEventos.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/br/com/ufrpe/gerenciadorestoque/telaNovaPeca.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/br/com/ufrpe/gerenciadorestoque/telaNovaPeca.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/br/com/ufrpe/gerenciadorestoque/telaPecas.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/br/com/ufrpe/gerenciadorestoque/telaPecas.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,8 +43,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="JavaFXApplication" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -68,13 +75,19 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Aplicativo.executor": "Run",
+    "Application.App.executor": "Run",
+    "Application.Teste.executor": "Run",
     "Application.TesteMain.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/gabri/IdeaProjects/gerenciador-estoque/src/main/resources/br/com/ufrpe/gerenciadorestoque",
+    "last_opened_file_path": "C:/Users/gabri/Downloads/openjfx-22.0.2_windows-x64_bin-sdk.zip",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.37931034",
     "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
   }
 }]]></component>
@@ -88,6 +101,40 @@
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="br.com.ufrpe.gerenciadorestoque" />
     </key>
+  </component>
+  <component name="RunManager" selected="Application.Teste">
+    <configuration name="Aplicativo" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="br.com.ufrpe.gerenciadorestoque.Aplicativo" />
+      <module name="gerenciador-estoque" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\gabri\Downloads\openjfx-22.0.2_windows-x64_bin-sdk\javafx-sdk-22.0.2\lib&quot; --add-modules javafx.controls,javafx.fxml" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.com.ufrpe.gerenciadorestoque.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Teste" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="br.com.ufrpe.gerenciadorestoque.negocio.controle.Teste" />
+      <module name="gerenciador-estoque" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.com.ufrpe.gerenciadorestoque.negocio.controle.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Teste" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -162,7 +209,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725293790540</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Ajustes">
+      <option name="closed" value="true" />
+      <created>1726388063911</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1726388063911</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -173,7 +228,8 @@
     <MESSAGE value="Métodos de salvar e carregar arquivo em RepositorioPecas." />
     <MESSAGE value="Ajustes nos repositórios, Exceções nos sets de Peca." />
     <MESSAGE value="método cadastrar, remover e existe da classe CadastroPecas" />
-    <option name="LAST_COMMIT_MESSAGE" value="método cadastrar, remover e existe da classe CadastroPecas" />
+    <MESSAGE value="Ajustes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajustes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -181,6 +237,10 @@
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.RuntimeException" package="java.lang" />
+          <option name="timeStamp" value="3" />
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>

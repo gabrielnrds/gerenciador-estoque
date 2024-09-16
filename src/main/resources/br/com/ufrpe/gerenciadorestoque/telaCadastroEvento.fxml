@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="487.0" prefWidth="642.0" style="-fx-background-color: 5f55;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="487.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ufrpe.gerenciadorestoque.CadastroEventoController">
    <children>
       <Label layoutX="22.0" layoutY="15.0" prefHeight="34.0" prefWidth="201.0" text="Cadastro de Evento">
          <font>
@@ -21,7 +21,7 @@
       <Line endX="497.0" layoutX="123.0" layoutY="49.0" startX="-100.0" />
       <AnchorPane layoutX="18.0" layoutY="59.0" prefHeight="242.0" prefWidth="312.0">
          <children>
-            <TextField fx:id="txtNome" layoutX="5.0" layoutY="24.0" prefHeight="30.0" prefWidth="135.0">
+            <TextField fx:id="txtFdNome" layoutX="5.0" layoutY="24.0" prefHeight="30.0" prefWidth="135.0">
                <font>
                   <Font size="14.0" />
                </font></TextField>
@@ -35,11 +35,11 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextArea fx:id="txtDescricao" layoutX="5.0" layoutY="146.0" prefHeight="91.0" prefWidth="291.0">
+            <TextArea fx:id="txtFdDescricao" layoutX="5.0" layoutY="146.0" prefHeight="91.0" prefWidth="291.0">
                <font>
                   <Font size="14.0" />
                </font></TextArea>
-            <TextField fx:id="txtValor" layoutX="154.0" layoutY="23.0" prefHeight="25.0" prefWidth="79.0" promptText="R$0.0">
+            <TextField fx:id="txtValor" editable="false" layoutX="154.0" layoutY="23.0" prefHeight="25.0" prefWidth="79.0" promptText="R$0.0">
                <font>
                   <Font size="14.0" />
                </font></TextField>
@@ -53,7 +53,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="txtCliente" layoutX="6.0" layoutY="84.0" prefHeight="30.0" prefWidth="135.0">
+            <TextField fx:id="txtFdCliente" layoutX="6.0" layoutY="84.0" prefHeight="30.0" prefWidth="135.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -67,17 +67,17 @@
          </children>
       </AnchorPane>
       <Line endX="497.0" layoutX="123.0" layoutY="441.0" startX="-100.0" />
-      <Button fx:id="btnSalvar" layoutX="340.0" layoutY="448.0" mnemonicParsing="false" text="Salvar">
+      <Button fx:id="btnSalvar" layoutX="340.0" layoutY="448.0" mnemonicParsing="false" onAction="#salvarEvento" text="Salvar">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btnCancelar" layoutX="248.0" layoutY="448.0" mnemonicParsing="false" text="Cancelar">
+      <Button fx:id="btnCancelar" layoutX="248.0" layoutY="448.0" mnemonicParsing="false" onAction="#cancelar" text="Cancelar">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <TableView fx:id="listaItensEvento" layoutX="330.0" layoutY="66.0" prefHeight="291.0" prefWidth="291.0">
+      <TableView fx:id="tabelaItensEvento" layoutX="330.0" layoutY="66.0" prefHeight="291.0" prefWidth="291.0">
         <columns>
           <TableColumn prefWidth="290.0" text="Peças Reservadas">
                <columns>
@@ -88,17 +88,17 @@
             </TableColumn>
         </columns>
       </TableView>
-      <Button id="listaItensEvento" fx:id="btnAdicionar" layoutX="527.0" layoutY="366.0" mnemonicParsing="false" text="Adicionar ">
+      <Button id="listaItensEvento" fx:id="btnAdicionar" layoutX="527.0" layoutY="366.0" mnemonicParsing="false" onAction="#adicionarItem" text="Adicionar ">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btnRemover" layoutX="526.0" layoutY="404.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" text="Remover">
+      <Button fx:id="btnRemover" layoutX="526.0" layoutY="404.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="30.0" prefWidth="81.0" text="Remover">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <TextField fx:id="txtId" layoutX="347.0" layoutY="387.0" prefHeight="30.0" prefWidth="86.0">
+      <TextField fx:id="txtFdId" layoutX="347.0" layoutY="387.0" prefHeight="30.0" prefWidth="86.0">
          <font>
             <Font size="14.0" />
          </font>
@@ -108,7 +108,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="txtQtd" layoutX="447.0" layoutY="387.0" prefHeight="30.0" prefWidth="62.0">
+      <TextField fx:id="txtFdQtd" layoutX="447.0" layoutY="387.0" prefHeight="30.0" prefWidth="62.0">
          <font>
             <Font size="14.0" />
          </font>
@@ -118,12 +118,17 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="txtEndereco" layoutX="23.0" layoutY="328.0" prefHeight="30.0" prefWidth="291.0">
+      <TextField fx:id="txtFdEndereco" layoutX="23.0" layoutY="328.0" prefHeight="30.0" prefWidth="291.0">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
       <Label layoutX="24.0" layoutY="306.0" text="Endereço:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblMsg" layoutX="24.0" layoutY="416.0">
          <font>
             <Font size="16.0" />
          </font>

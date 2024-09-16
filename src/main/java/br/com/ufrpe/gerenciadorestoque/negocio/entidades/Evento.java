@@ -19,13 +19,13 @@ public class Evento implements Serializable {
     private ArrayList<ItemEvento> itensEvento;
     private double valor;
 
-    public Evento(String nome, String descricao, String cliente, String endereco, ArrayList<ItemEvento> itensEvento, LocalDate dataEvento) {
+    public Evento(String nome, String descricao, String cliente, String endereco, LocalDate dataEvento) {
         this.setNome(nome);
         this.setDescricao(descricao);
         this.setCliente(cliente);
         this.setEndereco(endereco);
         this.setDataEvento(dataEvento);
-        this.setItensEvento(itensEvento);
+        this.setItensEvento(new ArrayList<>(0));
         this.setValor(calcularValor());
     }
 
@@ -97,6 +97,18 @@ public class Evento implements Serializable {
             this.itensEvento = itensEvento;
         } else {
             throw new IllegalArgumentException("Lista de itens do evento inválida.");
+        }
+    }
+
+    public void addItem(ItemEvento item){
+        if(item != null && !itensEvento.contains(item)){
+            this.itensEvento.add(item);
+        }
+    }
+
+    public void rmvItem(ItemEvento item){
+        if(item != null){
+            this.itensEvento.remove(item);
         }
     }
 

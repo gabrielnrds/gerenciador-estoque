@@ -4,7 +4,7 @@ public class PecaJaExisteException extends Exception {
     private String id;
 
     public PecaJaExisteException(String id){
-        super("A peca com id" + id + "já existe!");
+        super("A peca com id " + id + " já existe!");
         this.id = id;
     }
 

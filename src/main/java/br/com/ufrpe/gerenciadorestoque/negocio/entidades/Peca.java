@@ -1,5 +1,7 @@
 package br.com.ufrpe.gerenciadorestoque.negocio.entidades;
 
+import javafx.scene.image.Image;
+
 import java.awt.image.BufferedImage;
 import java.io.Serial;
 import java.io.Serializable;
@@ -13,7 +15,7 @@ public class Peca implements Serializable {
     private String nome;
     private String descricao;
     private double valor;
-    private BufferedImage fotoPeca;
+    private Image fotoPeca;
     private int quantidadeMin;
     private int quantidade;
     private int numVezesUsada;
@@ -25,7 +27,7 @@ public class Peca implements Serializable {
         this.nome = nome;
     }
 
-    public Peca(String id, String nome, String descricao, double valor, BufferedImage fotoPeca, int quantidadeMin, int quantidade, String localEndereco) {
+    public Peca(String id, String nome, String descricao, double valor, Image fotoPeca, int quantidadeMin, int quantidade, String localEndereco) {
         this.setId(id);
         this.setNome(nome);
         this.setDescricao(descricao);
@@ -47,6 +49,10 @@ public class Peca implements Serializable {
 
     public String getId() {
         return id;
+    }
+
+    public void setNumVezesUsada(int numVezesUsada) {
+        this.numVezesUsada = numVezesUsada;
     }
 
     public void setId(String id) throws IllegalArgumentException{
@@ -120,11 +126,11 @@ public class Peca implements Serializable {
 
     }
 
-    public BufferedImage getFotoPeca(){
+    public Image getFotoPeca(){
         return this.fotoPeca;
     }
 
-    public void setFotoPeca(BufferedImage fotoPeca){
+    public void setFotoPeca(Image fotoPeca){
         this.fotoPeca = fotoPeca;
     }
 

@@ -11,19 +11,21 @@ public class MovimentacaoPeca implements Serializable {
     private int numMovimentacao;
     private Peca peca;
     private int quantidade;
+    private EnumTipoMovimento tipo;
     private LocalDateTime dataHora;
-    private EnumTipoMovimentacao tipoMovimentacao;
     private String localOrigem;
     private String localDestino;
     private Evento evento;
     private static int proximoNum = 0;
 
-    public MovimentacaoPeca(Peca peca, int quantidade, String observacoes, EnumTipoMovimentacao tipoMovimentacao){
+    public MovimentacaoPeca(Peca peca, int quantidade, String localOrigem, String localDestino, Evento evento){
         this.numMovimentacao = getProximoNum();
         this.peca = peca;
         this.quantidade = quantidade;
-        this.tipoMovimentacao = tipoMovimentacao;
         this.dataHora = LocalDateTime.now();
+        this.localOrigem = localOrigem;
+        this.localDestino = localDestino;
+        this.evento = evento;
     }
 
     public static int getProximoNum(){
@@ -40,16 +42,16 @@ public class MovimentacaoPeca implements Serializable {
         return quantidade;
     }
 
-    public void setQuantidade(int quantidadePeca) {
-        this.quantidade = quantidadePeca;
+    public void setQuantidade(int quantidade) {
+        if(quantidade > 0){
+            this.quantidade = quantidade;
+        } else {
+            throw new IllegalArgumentException("A quantidade deve ser maior que zero.");
+        }
     }
 
-    public EnumTipoMovimentacao getTipoMovimentacao() {
-        return tipoMovimentacao;
-    }
-
-    public void setTipoMovimentacao(EnumTipoMovimentacao tipoMovimentacao) {
-        this.tipoMovimentacao = tipoMovimentacao;
+    public Evento getEvento(){
+        return evento;
     }
 
     public Peca getPeca() {

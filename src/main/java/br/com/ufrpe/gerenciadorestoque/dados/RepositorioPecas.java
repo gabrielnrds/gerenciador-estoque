@@ -3,6 +3,8 @@ package br.com.ufrpe.gerenciadorestoque.dados;
 import br.com.ufrpe.gerenciadorestoque.excecoes.PecaNaoExisteException;
 import br.com.ufrpe.gerenciadorestoque.negocio.entidades.Evento;
 import br.com.ufrpe.gerenciadorestoque.negocio.entidades.Peca;
+import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -90,6 +92,21 @@ public class RepositorioPecas implements Serializable {
         }
     }
 
+    public void atualizar(Peca peca, String novoNome, String novaDescricao, double novoValor, Image novaFotoPeca, int novaQuantidade, int novaQtdMin, String novoLocalEndereco, int numVezesUsada){
+        int i = procurarIndice(peca.getId());
+        if(i != proxima){
+            pecas[i].setNome(novoNome);
+            pecas[i].setDescricao(novaDescricao);
+            pecas[i].setValor(novoValor);
+            pecas[i].setFotoPeca(novaFotoPeca);
+            pecas[i].setQuantidade(novaQuantidade);
+            pecas[i].setQuantidadeMin(novaQtdMin);
+            pecas[i].setLocalEndereco(novoLocalEndereco);
+            pecas[i].setNumVezesUsada(numVezesUsada);
+            salvarArquivo();
+        }
+    }
+
     public Peca procurarPeca(String id){
         Peca peca = null;
         if(id != null) {
@@ -140,5 +157,9 @@ public class RepositorioPecas implements Serializable {
             } else { break; }
         }
         return resultado;
+    }
+
+    public Peca[] getPecas() {
+        return this.pecas;
     }
 }

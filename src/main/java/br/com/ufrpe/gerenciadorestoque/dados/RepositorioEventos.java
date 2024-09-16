@@ -111,6 +111,10 @@ public class RepositorioEventos implements Serializable {
         }
         return existe;
     }
+
+    public Evento[] getEventos() {
+        return eventos;
+    }
 }
 
 

@@ -14,10 +14,16 @@ public class ScreenManager {
     private Scene telaCadastroEvento;
     private Scene telaNovaPeca;
 
-
+    private CadastroPecaController cadastroPecaController;
+    private PecasController pecasController;
+    private EventosController eventosController;
     private CadastroEventoController cadastroEventoController;
 
-    private static ScreenManager getInstance(){
+    public ScreenManager(){
+        this.screenLoader();
+    }
+
+    public static ScreenManager getInstance(){
         if(instance == null){
             instance = new ScreenManager();
         }
@@ -32,12 +38,27 @@ public class ScreenManager {
         stage = stg;
     }
 
+    public Scene getTelaCadastroEvento() {
+        return this.telaCadastroEvento;
+    }
 
     private void screenLoader(){
         try {
             FXMLLoader telaPecasPane = new FXMLLoader(getClass().getResource("telaPecas.fxml"));
             this.telaPecas = new Scene(telaPecasPane.load());
-            //this.telaPecasController = telaPecasPane.getController();
+            this.pecasController = telaPecasPane.getController();
+
+            FXMLLoader telaNovaPecaPane = new FXMLLoader(getClass().getResource("telaNovaPeca.fxml"));
+            this.telaNovaPeca = new Scene(telaNovaPecaPane.load());
+            this.cadastroPecaController = telaNovaPecaPane.getController();
+
+            FXMLLoader telaEventosPane = new FXMLLoader(getClass().getResource("telaEventos.fxml"));
+            this.telaEventos = new Scene(telaEventosPane.load());
+            this.eventosController = telaEventosPane.getController();
+
+            FXMLLoader telaCadastroEventoPane = new FXMLLoader(getClass().getResource("telaCadastroEvento.fxml"));
+            this.telaCadastroEvento = new Scene(telaCadastroEventoPane.load());
+            this.cadastroEventoController = telaCadastroEventoPane.getController();
 
         }catch (Exception e) {
             throw new RuntimeException(e);
@@ -50,6 +71,9 @@ public class ScreenManager {
 
         switch (fileNameFxml){
             case "telaPecas.fxml" -> stage.setScene(telaPecas);
+            case "telaNovaPeca.fxml" -> stage.setScene(telaNovaPeca);
+            case "telaEventos.fxml" -> stage.setScene(telaEventos);
+            case "telaCadastroEvento.fxml" -> stage.setScene(telaCadastroEvento);
         }
         stage.setTitle(titleScreen);
 

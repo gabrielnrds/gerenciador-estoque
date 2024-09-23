@@ -3,6 +3,7 @@ package br.com.ufrpe.gerenciadorestoque.dados;
 import br.com.ufrpe.gerenciadorestoque.excecoes.PecaNaoExisteException;
 import br.com.ufrpe.gerenciadorestoque.negocio.entidades.Evento;
 import br.com.ufrpe.gerenciadorestoque.negocio.entidades.Peca;
+import br.com.ufrpe.gerenciadorestoque.negocio.entidades.Tag;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 
@@ -76,9 +77,20 @@ public class RepositorioPecas implements Serializable {
         }
     }
 
+    public String toString(){
+        String resultado = "Estoque de peças:\n";
+        for(Peca peca : pecas){
+            if(peca != null){
+                resultado += peca.toString();
+            }
+        }
+        return resultado;
+    }
+
     public void cadastrar(Peca peca){
         this.pecas[proxima] = peca;
         proxima++;
+        salvarArquivo();
     }
 
     public void remover(String id) throws PecaNaoExisteException {
@@ -87,22 +99,27 @@ public class RepositorioPecas implements Serializable {
             this.pecas[i] = this.pecas[this.proxima - 1];
             this.pecas[this.proxima - 1] = null;
             proxima--;
+            salvarArquivo();
         } else {
             throw new PecaNaoExisteException(id);
         }
     }
 
-    public void atualizar(Peca peca, String novoNome, String novaDescricao, double novoValor, Image novaFotoPeca, int novaQuantidade, int novaQtdMin, String novoLocalEndereco, int numVezesUsada){
+    public void atualizar(Peca peca, String novoNome, String novaDescricao, double novoValor, int novaQuantidade, int novaQtdMin, String novoLocalEndereco, ArrayList<Tag> novasTags){
         int i = procurarIndice(peca.getId());
+
         if(i != proxima){
-            pecas[i].setNome(novoNome);
-            pecas[i].setDescricao(novaDescricao);
-            pecas[i].setValor(novoValor);
-            pecas[i].setFotoPeca(novaFotoPeca);
-            pecas[i].setQuantidade(novaQuantidade);
-            pecas[i].setQuantidadeMin(novaQtdMin);
-            pecas[i].setLocalEndereco(novoLocalEndereco);
-            pecas[i].setNumVezesUsada(numVezesUsada);
+            Peca novaPeca = pecas[i];
+
+            novaPeca.setNome(novoNome);
+            novaPeca.setDescricao(novaDescricao);
+            novaPeca.setValor(novoValor);
+            novaPeca.setQuantidade(novaQuantidade);
+            novaPeca.setQuantidadeMin(novaQtdMin);
+            novaPeca.setLocalEndereco(novoLocalEndereco);
+            novaPeca.setTags(novasTags);
+
+            pecas[i] = novaPeca;
             salvarArquivo();
         }
     }
@@ -116,6 +133,18 @@ public class RepositorioPecas implements Serializable {
             }
         }
         return peca;
+    }
+
+    public ArrayList<Peca> filtrarPorTag(Tag tag){
+        ArrayList<Peca> resultado = new ArrayList<>(0);
+        if(tag != null){
+            for(Peca peca : this.pecas){
+                if(peca != null && peca.getTags().contains(tag)){
+                    resultado.add(peca);
+                }
+            }
+        }
+        return resultado;
     }
 
     public ArrayList<Peca> buscarPecasPeloNome(String nome){
@@ -149,17 +178,7 @@ public class RepositorioPecas implements Serializable {
         return existe;
     }
 
-    public String listarPecas(){
-        String resultado = "";
-        for(Peca peca : this.pecas){
-            if(peca != null){
-                resultado += peca.toString();
-            } else { break; }
-        }
-        return resultado;
-    }
-
-    public Peca[] getPecas() {
+    public Peca[] getPecas(){
         return this.pecas;
     }
 }

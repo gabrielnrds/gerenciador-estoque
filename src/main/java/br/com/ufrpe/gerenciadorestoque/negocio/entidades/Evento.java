@@ -4,8 +4,6 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.time.LocalDate;
-
 
 public class Evento implements Serializable {
     @Serial
@@ -19,14 +17,25 @@ public class Evento implements Serializable {
     private ArrayList<ItemEvento> itensEvento;
     private double valor;
 
-    public Evento(String nome, String descricao, String cliente, String endereco, LocalDate dataEvento) {
+    public Evento(String nome, String descricao, String cliente, String endereco, LocalDate dataEvento, ArrayList<ItemEvento> itensEvento) {
         this.setNome(nome);
         this.setDescricao(descricao);
         this.setCliente(cliente);
         this.setEndereco(endereco);
         this.setDataEvento(dataEvento);
-        this.setItensEvento(new ArrayList<>(0));
+        this.setItensEvento(itensEvento);
         this.setValor(calcularValor());
+    }
+
+    public String toString() {
+        String string = "Nome: %s | Descrição: %s | Cliente: %s | Endereco: %s%nPeças do evento: %s \n";
+        StringBuilder itens = new StringBuilder();
+        for(ItemEvento item : this.itensEvento){
+            itens.append(item.toString()).append("\n");
+        }
+        String resultado;
+        resultado = String.format(string, this.nome, this.descricao, this.cliente, this.endereco, itens);
+        return resultado;
     }
 
     public String getNome() {
@@ -93,10 +102,10 @@ public class Evento implements Serializable {
     }
 
     public void setItensEvento(ArrayList<ItemEvento> itensEvento) throws IllegalArgumentException{
-        if(itensEvento != null){
+        if(itensEvento != null && !itensEvento.isEmpty()){
             this.itensEvento = itensEvento;
         } else {
-            throw new IllegalArgumentException("Lista de itens do evento inválida.");
+            this.itensEvento = new ArrayList<ItemEvento>(0);
         }
     }
 
@@ -115,7 +124,7 @@ public class Evento implements Serializable {
     private double calcularValor(){
         double valor = 0.0;
         for(ItemEvento item : this.itensEvento){
-            if(item != null){
+            if(item != null && item.getValor() < 0){
                 valor += item.getValor();
             }
         }

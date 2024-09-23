@@ -1,5 +1,7 @@
 package br.com.ufrpe.gerenciadorestoque.dados;
 
+import br.com.ufrpe.gerenciadorestoque.excecoes.PecaNaoExisteException;
+import br.com.ufrpe.gerenciadorestoque.excecoes.TagNaoExisteException;
 import br.com.ufrpe.gerenciadorestoque.negocio.entidades.Tag;
 import java.io.*;
 
@@ -73,14 +75,18 @@ public class RepositorioTags implements Serializable {
     public void cadastrar(Tag tag){
         this.tags[proxima] = tag;
         proxima++;
+        salvarArquivo();
     }
 
-    public void remover(String nome){
+    public void remover(String nome) throws TagNaoExisteException {
         int i = procurarIndice(nome);
         if(i != this.proxima){
             this.tags[i] = this.tags[this.proxima - 1];
             this.tags[this.proxima - 1] = null;
             proxima--;
+            salvarArquivo();
+        } else {
+            throw new TagNaoExisteException(nome);
         }
     }
 
@@ -102,4 +108,7 @@ public class RepositorioTags implements Serializable {
         return existe;
     }
 
+    public Tag[] getTags() {
+        return tags;
+    }
 }

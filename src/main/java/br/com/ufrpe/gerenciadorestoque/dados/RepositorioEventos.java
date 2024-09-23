@@ -1,7 +1,12 @@
 package br.com.ufrpe.gerenciadorestoque.dados;
 
 import br.com.ufrpe.gerenciadorestoque.negocio.entidades.Evento;
+import br.com.ufrpe.gerenciadorestoque.negocio.entidades.ItemEvento;
+import br.com.ufrpe.gerenciadorestoque.negocio.entidades.Peca;
+
 import java.io.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class RepositorioEventos implements Serializable {
     @Serial
@@ -69,8 +74,19 @@ public class RepositorioEventos implements Serializable {
         }
     }
 
+    public String toString(){
+        String resultado = "Eventos:\n";
+        for(Evento evento : eventos){
+            if(evento != null){
+                resultado += evento.toString();
+            }
+        }
+        return resultado;
+    }
+
     public void cadastrar(Evento evento){
         this.eventos[proxima] = evento;
+        salvarArquivo();
         proxima++;
     }
 
@@ -80,6 +96,25 @@ public class RepositorioEventos implements Serializable {
             this.eventos[i] = this.eventos[this.proxima - 1];
             this.eventos[this.proxima - 1] = null;
             proxima--;
+            salvarArquivo();
+        }
+    }
+
+    public void atualizar(Evento evento, String novaDescricao, String novoCliente, String novoEndereco, LocalDate novaDataEvento, ArrayList<ItemEvento> novoItensEvento, double novoValor){
+        int i = procurarIndice(evento.getNome());
+
+        if(i != proxima){
+            Evento novoEvento = eventos[i];
+
+            novoEvento.setDescricao(novaDescricao);
+            novoEvento.setCliente(novoCliente);
+            novoEvento.setEndereco(novoEndereco);
+            novoEvento.setDataEvento(novaDataEvento);
+            novoEvento.setItensEvento(novoItensEvento);
+            novoEvento.setValor(novoValor);
+
+            eventos[i] = novoEvento;
+            salvarArquivo();
         }
     }
 

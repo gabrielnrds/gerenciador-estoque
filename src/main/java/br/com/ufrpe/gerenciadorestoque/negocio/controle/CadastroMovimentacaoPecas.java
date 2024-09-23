@@ -48,7 +48,7 @@ public class CadastroMovimentacaoPecas {
             peca.setNumVezesUsada(peca.getNumVezesUsada() + 1);
             peca.setQuantidade(quantidadeAtual);
 
-            repositorioPecas.atualizar(peca, peca.getNome(), peca.getDescricao(), peca.getValor(), peca.getFotoPeca(), peca.getQuantidade(), peca.getQuantidadeMin(), peca.getLocalEndereco(), peca.getNumVezesUsada());
+            repositorioPecas.atualizar(peca, peca.getNome(), peca.getDescricao(), peca.getValor(), peca.getQuantidade(), peca.getQuantidadeMin(), peca.getLocalEndereco(), peca.getTags());
 
             MovimentacaoPeca movimentacaoPeca = new MovimentacaoPeca(peca, quantidade, peca.getLocalEndereco(), evento.getEndereco(), evento);
 
@@ -72,7 +72,7 @@ public class CadastroMovimentacaoPecas {
             int quantidadeAtual = peca.getQuantidade() + quantidade;
             peca.setQuantidade(quantidadeAtual);
 
-            repositorioPecas.atualizar(peca, peca.getNome(), peca.getDescricao(), peca.getValor(), peca.getFotoPeca(), peca.getQuantidade(), peca.getQuantidadeMin(), peca.getLocalEndereco(), peca.getNumVezesUsada());
+            repositorioPecas.atualizar(peca, peca.getNome(), peca.getDescricao(), peca.getValor(), peca.getQuantidade(), peca.getQuantidadeMin(), peca.getLocalEndereco(), peca.getTags());
 
             MovimentacaoPeca movimentacaoPeca = new MovimentacaoPeca(peca, quantidade, null, null, null);
         }

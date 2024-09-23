@@ -18,7 +18,6 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class EventosController implements Initializable {
-
     @FXML
     private Button btnAdicionarEvento;
 

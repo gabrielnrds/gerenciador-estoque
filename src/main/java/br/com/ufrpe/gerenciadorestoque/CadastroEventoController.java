@@ -7,6 +7,7 @@ import br.com.ufrpe.gerenciadorestoque.negocio.controle.Fachada;
 import br.com.ufrpe.gerenciadorestoque.negocio.entidades.Evento;
 import br.com.ufrpe.gerenciadorestoque.negocio.entidades.ItemEvento;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -88,7 +89,7 @@ public class CadastroEventoController implements Initializable {
                 lblMsg.setText("Preencha todos os campos!");
             } else {
                 try{
-                    Evento evento = new Evento(nome, descricao, cliente, endereco, data);
+                    Evento evento = new Evento(nome, descricao, cliente, endereco, data, null);
                     Fachada fachada = Fachada.getInstance();
                     fachada.getCadastroEventos().cadastrar(evento);
                 } catch (EventoJaExisteException eje){
@@ -102,5 +103,9 @@ public class CadastroEventoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+    }
+
+    public void adicionarItem(ActionEvent event) {
+
     }
 }

@@ -1,10 +1,10 @@
 package br.com.ufrpe.gerenciadorestoque.excecoes;
 
-public class EventoJaExisteException extends Exception {
+public class TagJaExisteException extends Exception {
     private String nome;
 
-    public EventoJaExisteException(String nome){
-        super("O evento com o nome " + nome + " já existe.");
+    public TagJaExisteException(String nome){
+        super("A Tag com o nome " + nome + " já existe!");
         this.nome = nome;
     }
 

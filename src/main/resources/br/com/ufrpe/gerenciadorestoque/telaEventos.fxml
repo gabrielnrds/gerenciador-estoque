@@ -14,12 +14,11 @@
    <center>
       <TableView fx:id="tabelaEventos" prefHeight="396.0" prefWidth="557.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="colunaNum" prefWidth="74.0" resizable="false" text="Num" />
-            <TableColumn fx:id="colunaTipo" minWidth="0.0" prefWidth="106.0" resizable="false" text="Tipo" />
-            <TableColumn fx:id="colunaPeca" prefWidth="81.0" resizable="false" text="Peca" />
-            <TableColumn fx:id="colunaQtd" prefWidth="63.0" resizable="false" text="Qtd" />
-            <TableColumn fx:id="colunaOrigem" editable="false" minWidth="0.0" prefWidth="161.0" resizable="false" text="Origem" />
-            <TableColumn fx:id="colunaDestino" editable="false" maxWidth="215.0" prefWidth="162.0" resizable="false" text="Destino" />
+          <TableColumn fx:id="colunaNome" prefWidth="115.0" resizable="false" text="Nome" />
+            <TableColumn fx:id="colunaCliente" prefWidth="106.0" resizable="false" text="Cliente" />
+            <TableColumn fx:id="colunaValor" minWidth="0.0" prefWidth="75.0" resizable="false" text="Valor" />
+            <TableColumn fx:id="colunaData" prefWidth="92.0" resizable="false" text="Data" />
+            <TableColumn fx:id="colunaEndereco" editable="false" minWidth="0.0" prefWidth="258.0" resizable="false" text="Endereço" />
         </columns>
          <BorderPane.margin>
             <Insets right="20.0" />
@@ -74,19 +73,14 @@
    <bottom>
       <VBox prefHeight="62.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <TextField fx:id="txtFdId" />
-                  <TextField fx:id="txtFdQuantidade" />
-                  <TextField fx:id="txtFdEventoId" />
-               </children></HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
             <HBox alignment="CENTER" prefHeight="72.0" prefWidth="800.0" spacing="10.0">
                <children>
-                  <Button fx:id="btnEntrada" mnemonicParsing="false" text="ENTRADA">
+                  <Button fx:id="btnAdicionarEvento" mnemonicParsing="false" text="Adicionar evento">
                      <font>
                         <Font size="14.0" />
                      </font></Button>
-                  <Button fx:id="btnSaida" mnemonicParsing="false" text="SAÍDA">
+                  <Button fx:id="btnEditar" mnemonicParsing="false" text="Editar">
                      <font>
                         <Font size="14.0" />
                      </font></Button>

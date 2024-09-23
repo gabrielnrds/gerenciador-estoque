@@ -1,6 +1,8 @@
 package br.com.ufrpe.gerenciadorestoque.negocio.entidades;
 
-public class ItemEvento {
+import java.io.Serializable;
+
+public class ItemEvento implements Serializable {
     private Peca peca;
     private int quantidade;
     private double valor;
@@ -8,7 +10,11 @@ public class ItemEvento {
     public ItemEvento(Peca peca, int quantidade){
         setPeca(peca);
         setQuantidade(quantidade);
-        setValor(calcularValorTotal());
+        setValor(calcularValorTotal(peca, quantidade));
+    }
+
+    public String toString(){
+        return ("Peça: " + this.peca.getNome() + " | quantidade: " + this.quantidade + " | valor: R$" + this.valor);
     }
 
     public Peca getPeca() {
@@ -39,8 +45,8 @@ public class ItemEvento {
         return valor;
     }
 
-    private double calcularValorTotal(){
-        return this.peca.getValor() * this.quantidade;
+    private double calcularValorTotal(Peca peca, int quantidade){
+        return peca.getValor() * quantidade;
     }
 
     public void setValor(double valor) {

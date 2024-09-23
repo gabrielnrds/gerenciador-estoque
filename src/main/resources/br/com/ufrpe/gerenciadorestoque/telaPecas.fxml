@@ -2,24 +2,32 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ufrpe.gerenciadorestoque.PecasController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.ufrpe.gerenciadorestoque.PecasController">
    <center>
-      <TableView fx:id="tabelaPecas" maxWidth="700.0" prefHeight="418.0" prefWidth="648.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tabelaPecas" maxHeight="-Infinity" maxWidth="751.0" prefHeight="300.0" prefWidth="748.0" BorderPane.alignment="TOP_CENTER">
         <columns>
-          <TableColumn fx:id="colunaId" maxWidth="77.0" prefWidth="77.0" resizable="false" text="Id" />
-          <TableColumn fx:id="colunaNome" maxWidth="139.0" minWidth="139.0" prefWidth="139.0" resizable="false" text="Nome" />
-            <TableColumn fx:id="colunaValor" prefWidth="93.0" resizable="false" text="Valor Aluguel" />
-            <TableColumn fx:id="colunaQuantidade" maxWidth="148.0" prefWidth="77.0" resizable="false" text="Quantidade" />
+          <TableColumn fx:id="colunaId" maxWidth="97.0" prefWidth="95.0" resizable="false" text="Id" />
+          <TableColumn fx:id="colunaNome" maxWidth="202.0" minWidth="127.0" prefWidth="166.0" resizable="false" text="Nome" />
+            <TableColumn fx:id="colunaValor" prefWidth="102.0" resizable="false" text="Valor Aluguel" />
+            <TableColumn fx:id="colunaQuantidade" maxWidth="174.0" prefWidth="82.0" resizable="false" text="Quantidade" />
             <TableColumn fx:id="colunaQtdMin" maxWidth="199.0" prefWidth="56.0" resizable="false" text="Qtd Min" />
-            <TableColumn fx:id="colunaLocalidade" maxWidth="285.0" prefWidth="205.0" resizable="false" text="Localidade" />
+            <TableColumn fx:id="colunaLocalidade" maxWidth="305.0" prefWidth="246.0" resizable="false" text="Localidade" />
         </columns>
          <BorderPane.margin>
             <Insets right="20.0" />
@@ -29,15 +37,15 @@
    <left>
       <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="132.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnTelaEstoque" mnemonicParsing="false" prefHeight="48.0" prefWidth="116.0" text="Estoque">
-               <font>
-                  <Font size="14.0" />
-               </font></Button>
-            <Button fx:id="btnTelaMovimentacoes" mnemonicParsing="false" prefHeight="48.0" prefWidth="116.0" text="Movimentaçoes">
+            <Button fx:id="btnTelaPecas" mnemonicParsing="false" prefHeight="48.0" prefWidth="116.0" text="Peças">
                <font>
                   <Font size="14.0" />
                </font></Button>
             <Button fx:id="btnTelaEventos" mnemonicParsing="false" onAction="#irParaTelaEventos" prefHeight="48.0" prefWidth="116.0" text="Eventos">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Button fx:id="btnTelaMovimentacoes" mnemonicParsing="false" prefHeight="48.0" prefWidth="116.0" text="Movimentaçoes">
                <font>
                   <Font size="14.0" />
                </font></Button>
@@ -72,50 +80,177 @@
       </VBox>
    </top>
    <bottom>
-      <VBox prefHeight="62.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+      <GridPane alignment="TOP_CENTER" prefHeight="244.0" prefWidth="786.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="557.0" minWidth="10.0" prefWidth="471.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <BorderPane.margin>
+            <Insets bottom="15.0" left="133.0" right="20.0" top="15.0" />
+         </BorderPane.margin>
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
-               <VBox.margin>
-                  <Insets bottom="10.0" left="132.0" top="5.0" />
-               </VBox.margin>
+            <VBox prefHeight="244.0" prefWidth="503.0">
                <children>
-                  <Button fx:id="btnAtualizar" mnemonicParsing="false" onAction="#atualizarTabela" text="Atualizar">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
+                  <HBox prefHeight="30.0" prefWidth="511.0" spacing="5.0">
+                     <children>
+                        <Label text="Id: ">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtFdId" prefHeight="30.0" prefWidth="86.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                        <Label text="Nome: ">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtFdNome" prefHeight="30.0" prefWidth="100.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                        <Label text="Valor: ">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtFdValor" prefHeight="30.0" prefWidth="100.0" promptText="R$">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="29.0" prefWidth="511.0" spacing="5.0">
+                     <children>
+                        <Label text="Quantidade:">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtFdQuantidade" prefHeight="30.0" prefWidth="102.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="19.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Label text="Quantidade Min:">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtFdQtdMin" prefHeight="30.0" prefWidth="88.0" promptText="0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="32.0" prefWidth="511.0">
+                     <children>
+                        <Label text="Localidade:">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtFdLocalidade" prefHeight="30.0" prefWidth="172.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="12.0" right="15.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="89.0" prefWidth="511.0">
+                     <children>
+                        <Label text="Descrição: ">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="txtAreaDescricao" prefHeight="55.0" prefWidth="338.0">
+                           <HBox.margin>
+                              <Insets left="16.0" />
+                           </HBox.margin>
+                        </TextArea>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="0.0" prefWidth="557.0">
+                     <children>
+                        <Label text="Tags:" translateX="35.0">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <ListView fx:id="listTags" prefHeight="20.0" prefWidth="289.0" translateX="50.0">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </ListView>
+                        <Button maxHeight="35.0" maxWidth="35.0" mnemonicParsing="false" onAction="#abrirTelaTags" prefHeight="35.0" prefWidth="35.0" style="-fx-background-radius: 0;">
+                           <graphic>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@tag.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="TOP_CENTER" prefHeight="74.0" prefWidth="511.0" spacing="30.0">
+                     <children>
+                        <Button fx:id="btnSalvarPeca" mnemonicParsing="false" onAction="#cadastrarPeca" text="Salvar Peça">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnEditar" mnemonicParsing="false" text="Editar">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnRemover" mnemonicParsing="false" onAction="#removerPeca" text="Remover">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
                </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-            <HBox alignment="CENTER" prefHeight="72.0" prefWidth="800.0" spacing="10.0">
-               <children>
-                  <Button fx:id="btnCadastrarPeca" mnemonicParsing="false" onAction="#irPraTelaCadastroPecas" text="Cadastrar Peça">
-                     <font>
-                        <Font size="14.0" />
-                     </font></Button>
-                  <Button fx:id="btnExcluir" mnemonicParsing="false" onAction="#excluir" text="Excluir">
-                     <font>
-                        <Font size="14.0" />
-                     </font></Button>
-                  <Button fx:id="btnEditar" mnemonicParsing="false" text="Editar">
-                     <font>
-                        <Font size="14.0" />
-                     </font></Button>
-               </children>
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </HBox>
+            </VBox>
          </children>
-      </VBox>
+      </GridPane>
    </bottom>
 </BorderPane>

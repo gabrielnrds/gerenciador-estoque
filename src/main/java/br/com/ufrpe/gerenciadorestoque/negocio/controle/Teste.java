@@ -4,23 +4,67 @@ import br.com.ufrpe.gerenciadorestoque.excecoes.*;
 import br.com.ufrpe.gerenciadorestoque.negocio.entidades.Evento;
 import br.com.ufrpe.gerenciadorestoque.negocio.entidades.ItemEvento;
 import br.com.ufrpe.gerenciadorestoque.negocio.entidades.Peca;
+import br.com.ufrpe.gerenciadorestoque.negocio.entidades.Tag;
 
 import java.time.LocalDate;
 
 public class Teste {
     public static void main(String[] args) {
         Fachada fachada = Fachada.getInstance();
-        //fachada.getCadastroEventos().cadastrar(new Evento(String nome, String descricao, String cliente, String endereco, ArrayList< ItemEvento > itensEvento, LocalDate dataEvento));
-        //Peca(String id, String nome, String descricao, double valor, Image fotoPeca, int quantidadeMin, int quantidade, String localEndereco) {
         try{
-            fachada.getCadastroPecas().cadastrar(new Peca("peca00", "Cadeira de plástico", "cadeira branca de plastico", 10, null, 20, 30, "casa"));
-            fachada.getCadastroPecas().cadastrar(new Peca("peca09", "Painel de madeira", "Painel de madeira 2 metros", 45, null, 3, 3, "casa"));
-            fachada.getCadastroEventos().cadastrar(new Evento("Aniverário", "", "José", "Space Center, rua sla oq, 234", LocalDate.now()));
-            fachada.getCadastroEventos().adicionarItemEvento("Aniversário", "peca01", 10);
-            System.out.println(fachada.getCadastroPecas().getRepositorio().procurarPeca("peca00"));
-        } catch (QtdSuperiorQueADisponivelException | EventoNaoExisteException | PecaNaoExisteException | PecaJaExisteException | EventoJaExisteException e){
+            fachada.cadastrarPeca(new Peca("peca02", "Tapete vermelho", "Tapete vermelho 5m", 30.0, 0, 2, "casa", null));
+            fachada.cadastrarPeca(new Peca("peca01", "Boleira", "Boleira prateada 45cm", 10.0, 2, 3, "casa", null));
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        try{
+            fachada.cadastrarPeca(new Peca("peca03", "Boleira", "Boleira dourada 45cm", 10.0, 0, 2, "casa", null));
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        try{
+            fachada.cadastrarPeca(new Peca("", "Cadeira de plástico", "", 10.0, 10, 20, "Galpão", null));
+        } catch (Exception e){
             System.out.println(e.getMessage());
         }
 
+        try{
+            fachada.cadastrarTag(new Tag("Retro"));
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        System.out.println(fachada.listarRepositorioPecas());
+
+        try {
+            fachada.cadastrarEvento(new Evento("Aniversário de julia", "", "Julia", "Rua fulano de tal, 21", LocalDate.of(2024, 9, 25), null));
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            fachada.cadastrarEvento(new Evento("Aniversário de julia", "dasdasd", "Roberto", "Rua fulano de tal, 50", LocalDate.of(2024, 9, 25), null));
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            fachada.cadastrarEvento(new Evento("Casamento", "", "Ana Clara", "Rua fulano de tal, 21", LocalDate.of(2024, 9, 10), null));
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            fachada.adicionarItemEvento("Aniversário de julia", "peca01", 1);
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            fachada.removerPeca("pn01");
+            fachada.removerPeca("peca01");
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 }

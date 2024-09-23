@@ -1,25 +1,30 @@
 package br.com.ufrpe.gerenciadorestoque.negocio.controle;
 
+import br.com.ufrpe.gerenciadorestoque.dados.RepositorioEventos;
 import br.com.ufrpe.gerenciadorestoque.dados.RepositorioPecas;
 import br.com.ufrpe.gerenciadorestoque.excecoes.PecaJaExisteException;
 import br.com.ufrpe.gerenciadorestoque.excecoes.PecaNaoExisteException;
+import br.com.ufrpe.gerenciadorestoque.excecoes.PecaReservadaException;
+import br.com.ufrpe.gerenciadorestoque.negocio.entidades.Evento;
+import br.com.ufrpe.gerenciadorestoque.negocio.entidades.ItemEvento;
 import br.com.ufrpe.gerenciadorestoque.negocio.entidades.Peca;
-import javafx.scene.image.Image;
+import br.com.ufrpe.gerenciadorestoque.negocio.entidades.Tag;
 
 import java.util.ArrayList;
 
 public class CadastroPecas {
-    private RepositorioPecas repositorio;
+    private RepositorioPecas repositorioPecas;
+    private RepositorioEventos repositorioEventos;
 
     public CadastroPecas(){
-        this.repositorio = RepositorioPecas.getInstance();
+        this.repositorioPecas = RepositorioPecas.getInstance();
+        this.repositorioEventos = RepositorioEventos.getInstance();
     }
 
     public void cadastrar(Peca peca) throws PecaJaExisteException {
         if(peca != null){
             if(!this.existe(peca.getId())){
-                this.repositorio.cadastrar(peca);
-                this.repositorio.salvarArquivo();
+                this.repositorioPecas.cadastrar(peca);
             } else {
                 throw new PecaJaExisteException(peca.getId());
             }
@@ -28,24 +33,29 @@ public class CadastroPecas {
         }
     }
 
-    public void remover(String id) throws PecaNaoExisteException {
-        this.repositorio.remover(id);
-        this.repositorio.salvarArquivo();
+    public void remover(String id) throws PecaNaoExisteException, PecaReservadaException {
+        Peca peca = this.repositorioPecas.procurarPeca(id);
+        if(peca != null){
+            if(pecaEstaReservada(peca)){
+                throw new PecaReservadaException(peca.getId());
+            }
+            this.repositorioPecas.remover(id);
+        } else {
+            throw new PecaNaoExisteException(id);
+        }
     }
 
-    public void atualizar(Peca peca, String novoNome, String novaDescricao, double novoValor, Image novaFotoPeca, int novaQuantidade, int novaQtdMin, String novoLocalEndereco, int numVezesUsada) throws PecaNaoExisteException{
-        if(repositorio.pecaExiste(peca.getId())){
-            if(novoNome.isEmpty() || peca.getNome().equals(novoNome)){
+    public void atualizar(String id, String novoNome, String novaDescricao, double novoValor, int novaQuantidade, int novaQtdMin, String novoLocalEndereco, ArrayList<Tag> novasTags) throws PecaNaoExisteException{
+        Peca peca = repositorioPecas.procurarPeca(id);
+        if(peca != null){
+            if(novoNome == null || novoNome.isEmpty() || peca.getNome().equals(novoNome)){
                 novoNome = peca.getNome();
             }
-            if(novaDescricao.isEmpty() || peca.getDescricao().equals(novaDescricao)){
+            if(novaDescricao == null || novaDescricao.isEmpty() || peca.getDescricao().equals(novaDescricao)){
                 novaDescricao = peca.getDescricao();
             }
             if(novoValor < 0.0 || peca.getValor() == novoValor){
                 novoValor = peca.getValor();
-            }
-            if(novaFotoPeca.equals(peca.getFotoPeca())){
-                novaFotoPeca = peca.getFotoPeca();
             }
             if(novaQuantidade < 0 || peca.getQuantidade() == novaQuantidade){
                 novaQuantidade = peca.getQuantidade();
@@ -53,30 +63,48 @@ public class CadastroPecas {
             if(novaQtdMin < 0 || peca.getQuantidadeMin() == novaQtdMin){
                 novaQtdMin = peca.getQuantidadeMin();
             }
-            if(novoLocalEndereco.isEmpty() || peca.getLocalEndereco().equals(novoLocalEndereco)){
+            if(novoLocalEndereco == null || novoLocalEndereco.isEmpty() || peca.getLocalEndereco().equals(novoLocalEndereco)){
                 novoLocalEndereco = peca.getLocalEndereco();
             }
-            if(numVezesUsada < 0 || peca.getNumVezesUsada() == numVezesUsada){
-                numVezesUsada = peca.getNumVezesUsada();
+            if(novasTags == null || peca.getTags().equals(novasTags)){
+                novasTags = peca.getTags();
             }
-            repositorio.atualizar(peca, novoNome, novaDescricao, novoValor, novaFotoPeca, novaQuantidade, novaQtdMin, novoLocalEndereco, numVezesUsada);
-            repositorio.salvarArquivo();
+            repositorioPecas.atualizar(peca, novoNome, novaDescricao, novoValor, novaQuantidade, novaQtdMin, novoLocalEndereco, novasTags);
         } else {
-            throw new PecaNaoExisteException(peca.getId());
+            throw new PecaNaoExisteException(id);
         }
     }
 
-    public RepositorioPecas getRepositorio() {
-        return repositorio;
+    public boolean existe(String id){
+        return this.repositorioPecas.pecaExiste(id);
     }
 
+    public boolean pecaEstaReservada(Peca peca) {
+        boolean reservada = false;
+        Evento[] repEventos = this.repositorioEventos.getEventos();
+        for(Evento evento : repEventos){
+            if(evento != null && !(evento.getItensEvento().isEmpty()) && !reservada){
+                ArrayList<ItemEvento> itensEvento = evento.getItensEvento();
+                for(ItemEvento item : itensEvento){
+                    if(item.getPeca().equals(peca)){
+                        reservada = true;
+                        break;
+                    }
+                }
+            }
+        }
+        return reservada;
+    }
 
+    public String listarRepositorioPecas(){
+        return this.repositorioPecas.toString();
+    }
 
     public ArrayList<Peca> buscarPecasPeloNome(String nome){
-        return this.repositorio.buscarPecasPeloNome(nome);
+        return this.repositorioPecas.buscarPecasPeloNome(nome);
     }
 
-    public boolean existe(String id){
-        return this.repositorio.pecaExiste(id);
+    public RepositorioPecas getRepositorio() {
+        return repositorioPecas;
     }
 }

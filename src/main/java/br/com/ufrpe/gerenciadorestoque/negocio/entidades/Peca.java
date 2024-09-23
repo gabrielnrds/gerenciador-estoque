@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Peca implements Serializable {
     @Serial
@@ -15,7 +16,6 @@ public class Peca implements Serializable {
     private String nome;
     private String descricao;
     private double valor;
-    private Image fotoPeca;
     private int quantidadeMin;
     private int quantidade;
     private int numVezesUsada;
@@ -27,24 +27,40 @@ public class Peca implements Serializable {
         this.nome = nome;
     }
 
-    public Peca(String id, String nome, String descricao, double valor, Image fotoPeca, int quantidadeMin, int quantidade, String localEndereco) {
+    public Peca(String id, String nome, String descricao, double valor, int quantidadeMin, int quantidade, String localEndereco, ArrayList<Tag> tags) {
         this.setId(id);
         this.setNome(nome);
         this.setDescricao(descricao);
         this.setValor(valor);
-        this.setFotoPeca(fotoPeca);
         this.setQuantidadeMin(quantidadeMin);
         this.setQuantidade(quantidade);
         this.setLocalEndereco(localEndereco);
+        this.setTags(tags);
         this.numVezesUsada = 0;
-        this.tags = new ArrayList<>();
     }
 
     public String toString() {
-        String string = "ID: %s | %s%n";
+        String string = "ID: %s | Nome: %s | Descrição: %s | Valor: R$%g | Quantidade: %d | Qtd min: %d | Localidade: %s | Tags: %s%n";
+        StringBuilder tags = new StringBuilder();
+        for(Tag tag : this.tags){
+            tags.append(tag).append(" ");
+        }
         String resultado;
-        resultado = String.format(string, this.id, this.nome);
+        resultado = String.format(string, this.id, this.nome, this.descricao, this.valor, this.quantidade, this.quantidadeMin, this.localEndereco, tags);
         return resultado;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Peca peca = (Peca) o;
+        return Objects.equals(getId(), peca.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getId());
     }
 
     public String getId() {
@@ -126,20 +142,20 @@ public class Peca implements Serializable {
 
     }
 
-    public Image getFotoPeca(){
-        return this.fotoPeca;
-    }
-
-    public void setFotoPeca(Image fotoPeca){
-        this.fotoPeca = fotoPeca;
-    }
-
     public String getLocalEndereco() {
         return localEndereco;
     }
 
     public void setLocalEndereco(String localEndereco) {
         this.localEndereco = localEndereco;
+    }
+
+    public void setTags(ArrayList<Tag> tags){
+        if(tags != null && !tags.isEmpty()){
+            this.tags = tags;
+        } else {
+            this.tags = new ArrayList<Tag>(0);
+        }
     }
 
     public ArrayList<Tag> getTags(){
